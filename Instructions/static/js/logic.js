@@ -14,7 +14,7 @@ var grayscaleMap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/
   accessToken: API_KEY
 });
 
-// Create the map, giving it the grayscaleMap and earthquakes layers to display on load
+// Create the map, grayscaleMap and earthquakes layers willdisplay on load
 var myMap = L.map("mapid", {
   center: [
     37.09, -95.71
@@ -47,7 +47,7 @@ d3.json(earthquakesURL, function(earthquakeData) {
   }
 
   // Create a GeoJSON layer containing the features array
-  // Each feature a popup describing the place and time of the earthquake
+  // Place and time of the earthquake
   L.geoJSON(earthquakeData, {
     pointToLayer: function (feature, latlng) {
       return L.circleMarker(latlng, 
@@ -67,7 +67,7 @@ d3.json(earthquakesURL, function(earthquakeData) {
       + new Date(feature.properties.time) + "</p><hr><p>Magnitude: " + feature.properties.mag + "</p>");
     }
   }).addTo(earthquakes);
-  // Sending our earthquakes layer to the createMap function
+  // Earthquakes layer to the createMap function
   earthquakes.addTo(myMap);
 
     // Add legend
